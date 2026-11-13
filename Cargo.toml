@@ -1,0 +1,40 @@
+[package]
+name = "ym_light_player"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+eframe = "0.29"
+egui = "0.29"
+egui_extras = { version = "0.29", features = ["all_loaders"] }
+image = { version = "0.25", default-features = false, features = ["jpeg", "png"] }
+rodio = { version = "0.19", features = ["symphonia-all"] }
+reqwest = { version = "0.12", features = ["json", "blocking", "rustls-tls"], default-features = false }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+md-5 = "0.10"
+global-hotkey = "0.6"
+tray-icon = "0.19"
+rfd = "0.15"
+open = "5.3"
+
+[target.'cfg(windows)'.dependencies]
+windows-sys = { version = "0.59", features = [
+    "Win32_System_ProcessStatus",
+    "Win32_System_Threading",
+    "Win32_System_Memory",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_Foundation",
+] }
+[build-dependencies]
+winres = "0.1"
+
+[profile.release]
+opt-level = 3
+lto = "thin"
+panic = "abort"
+strip = false
+
+
+
+
